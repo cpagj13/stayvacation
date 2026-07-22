@@ -42,9 +42,9 @@ ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
 
 # Railway injects $PORT — artisan serve will bind to it
-CMD php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache \
-    && php artisan migrate --force \
-    && php artisan storage:link \
-    && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+CMD php artisan storage:link 2>/dev/null ; \
+    php artisan migrate --force 2>/dev/null ; \
+    php artisan config:cache 2>/dev/null ; \
+    php artisan route:cache 2>/dev/null ; \
+    php artisan view:cache 2>/dev/null ; \
+    php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
