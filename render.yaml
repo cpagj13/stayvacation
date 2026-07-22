@@ -21,13 +21,12 @@ services:
       - key: LOG_LEVEL
         value: error
 
-      # PostgreSQL — Render injects the full connection string
+      # PostgreSQL — use fromDatabase (not fromService) for Render Postgres
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_URL
-        fromService:
+        fromDatabase:
           name: stayvacation-db
-          type: pserv
           property: connectionString
 
       - key: SESSION_DRIVER
@@ -39,7 +38,7 @@ services:
       - key: FILESYSTEM_DISK
         value: local
 
-      # Mail — set values in the Render dashboard
+      # Mail — set in the Render dashboard after deploy
       - key: MAIL_MAILER
         value: smtp
       - key: MAIL_HOST
