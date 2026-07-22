@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\PromoCodeController;
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Auth\OtpController;
 
 Route::get('/', function () {
     if (auth()->check() && auth()->user()->isAdmin()) {
@@ -124,8 +125,6 @@ Route::get('/book-now', function () {
     session(['url.intended' => route('booking.step1')]);
     return redirect()->route('register');
 })->name('book-now');
-
-use App\Http\Controllers\Auth\OtpController;
 
 Route::get('/verify-otp', [OtpController::class, 'showVerify'])->name('otp.verify');
 Route::post('/verify-otp', [OtpController::class, 'verify'])->name('otp.verify.submit');
