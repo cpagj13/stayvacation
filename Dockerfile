@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 
 # ─── Stage 2: Production PHP 8.3 + Nginx ────────────────────────────────────────
-FROM webdevops/php-nginx:8.3
+FROM webdevops/php-nginx:8.4
 
 ENV WEB_DOCUMENT_ROOT=/app/public
 ENV APP_ENV=production
